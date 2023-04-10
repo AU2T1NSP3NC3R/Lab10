@@ -9,3 +9,23 @@ template <class T>
 hashTable<T>::~hashTable() {
 
 }
+
+template <class T>
+void hashTable<T>::addItem(T*) {
+
+}
+
+template <class T>
+T* hashTable<T>::removeItem(T*) {
+
+}
+
+template <class T>
+int hashTable<T>::getLength() {
+	return items;
+}
+
+template <class T>
+int hashTable<T>::hash(T*) {
+
+}

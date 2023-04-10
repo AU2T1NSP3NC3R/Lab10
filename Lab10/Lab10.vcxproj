@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hashTable.h" />
+    <ClInclude Include="Part.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hashTable.cpp" />
+    <ClCompile Include="Part.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
