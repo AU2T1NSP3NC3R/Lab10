@@ -8,12 +8,12 @@ using namespace std;
 class Part
 {
 	private:
-			int sku;
+		int sku;
 		string desc;
-			double price;
-			string uom; // unit of measurement
-			int qoh; // quantity on hand
-			double lt; // leadtime
+		double price;
+		string uom; // unit of measurement
+		int qoh; // quantity on hand
+		double lt; // leadtime
 	public:
 		Part();
 		Part(int sku, string desc, double price, string uom, int qoh);
