@@ -1,6 +1,11 @@
 #include "hashTable.h"
 template <class T>
 hashTable<T>::hashTable() {
-	//making constuctor for hashTable
-	// tommy making comment
+	items = 0;
+	arr = new Node*[MAX_SIZE];
+}
+
+template <class T>
+hashTable<T>::~hashTable() {
+
 }
