@@ -5,8 +5,6 @@
 #include <iomanip>
 #include <ctime>
 
-// Testing 
-
 using namespace std;
 class Part
 {
@@ -35,6 +33,6 @@ class Part
 		bool operator>=(const Part&);
 		bool operator!=(const Part&);
 		bool operator==(const Part&);
-		
+		operator string();
 };
 

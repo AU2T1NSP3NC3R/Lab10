@@ -114,3 +114,8 @@ bool Part::operator!=(const Part& inVal) {
 bool Part::operator==(const Part& inVal) {
 	return(this->sku == inVal.sku);
 }
+
+Part::operator string() {
+	string ret = to_string(sku);
+	return ret;
+}
