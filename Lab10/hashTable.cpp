@@ -3,6 +3,9 @@ template <class T>
 hashTable<T>::hashTable() {
 	items = 0;
 	arr = new T*[MAX_SIZE];
+	for (int i = 0; i < MAX_SIZE; i++) {
+		arr[i] = nullptr;
+	}
 }
 
 template <class T>
@@ -10,6 +13,9 @@ hashTable<T>::hashTable(int inVal) {	// calls setMAX_SIZE so we can always % the
 	items = 0;
 	setMAX_SIZE(inVal);
 	arr = new T*[MAX_SIZE];
+	for (int i = 0; i < MAX_SIZE; i++) {
+		arr[i] = nullptr;
+	}
 }
 
 template <class T>
