@@ -10,10 +10,11 @@ int main() {
 	Part z = Part(12355, "desk", 150, "meters", 10);
 	Part* ptr = &z;
 
-	Part x = Part(12355, "pencil", 1, "inches", 1453);
+	Part x = Part(123, "pencil", 1, "inches", 1453);
 	Part* ptr2 = &x;
 
 	myTable.addItem(ptr);
+	myTable.addItem(ptr2);
 
 	return 0;
 }

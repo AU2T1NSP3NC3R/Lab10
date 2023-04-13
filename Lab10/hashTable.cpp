@@ -34,7 +34,7 @@ void hashTable<T>::addItem(T* inVal) {	// address represents the index of where 
 	else {	// covers collisions
 		while (arr[address] != nullptr) {	// iterates address to next open spot within the array
 			if (address < MAX_SIZE) {
-				adress++;
+				address++;
 			}
 			else if (address == MAX_SIZE) {	// resets address to front of array when it iterates to end
 				address = 0;
