@@ -67,24 +67,29 @@ T* hashTable<T>::removeItem(T* inVal) {
 	if (*arr[address] == *inVal) {	// item was placed with no collision and is found instantly
 		ret = arr[address];
 		arr[address] = nullptr;	// might cause ret to turn into nullptr, consider changing prev line to 'ret = inVal'
+		items--;
 		return ret;
 	}
-	else {	// ADD LOGIC THAT COVERS COLLISIONS HERE
-		while (*arr[address] != *inVal && spotsChecked < MAX_SIZE) {// iterates until arr[address] == inVal or each spot is checked
-			if (address < MAX_SIZE) {
+	else {	// Logic that covers removing items that were placed with collision
+		address = 0;
+		while (spotsChecked < MAX_SIZE) {	// while loop will terminate if inVal is found, or it checks every spot and does not find inVal
+			if (arr[address] == nullptr) {
 				address++;
 				spotsChecked++;
 			}
-			else if (address == MAX_SIZE) {	// resets address to front of array after it iterates till end
-				address = 0;
-				spotsChecked++;
+			else {	// checks all entries in table that are not nullptr
+				if (*arr[address] == *inVal) {
+					ret = arr[address];
+					arr[address] = nullptr;
+					items--;
+					return ret;
+				}
+				else {
+					spotsChecked++;
+				}
 			}
 		}
-		if (*arr[address] == *inVal) {
-			ret = arr[address];
-			arr[address] = nullptr;
-			return ret;
-		}
+		return nullptr;
 	}
 }
 
@@ -107,8 +112,12 @@ int hashTable<T>::hash(string inVal) {	// ret represents the hash value that wil
 
 template <class T>
 void hashTable<T>::printTable() {
-	for (int i = 0; i < items; i++) {
-		cout << "item(" << i << "): " << arr[i] << endl;
+	for (int i = 0; i < MAX_SIZE; i++) {
+		if (arr[i] != nullptr) {
+			T toPrint = *arr[i];
+			toPrint.display();
+			cout << endl;
+		}
 	}
 }
 

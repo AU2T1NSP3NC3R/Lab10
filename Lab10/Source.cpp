@@ -7,16 +7,20 @@
 int main() {
 	hashTable<Part> myTable = hashTable<Part>(3);
 
-	Part x = Part(54, "5", 5, "5");
+	Part x = Part(55, "5", 5, "5", 14);
 	Part* y = &x;
 
-	Part v = Part(55, "4", 4, "4");
+	Part v = Part(55, "4", 4, "4", 19);
 	Part* z = &v;
 
-
+	Part t = Part(55, "3", 3, "3", 3);
+	Part* d = &t;
 
 	myTable.addItem(y);
 	myTable.addItem(z);
+	myTable.addItem(d);
+
+	myTable.printTable();
 
 	Part* toRemove = myTable.removeItem(z);
 	bool tableMade = false;

@@ -112,7 +112,7 @@ bool Part::operator!=(const Part& inVal) {
 }
 
 bool Part::operator==(const Part& inVal) {
-	return(this->sku == inVal.sku);
+	return((this->sku == inVal.sku) && (this->desc.compare(inVal.desc) == 0));
 }
 
 Part::operator string() {
