@@ -7,13 +7,116 @@
 int main() {
 	hashTable<Part> myTable = hashTable<Part>(3);
 
-	Part z = Part(12355, "desk", 150, "meters", 10);
-	Part* ptr = &z;
+	Part x = Part(54, "5", 5, "5");
+	Part* y = &x;
 
-	Part x = Part(123, "pencil", 1, "inches", 1453);
-	Part* ptr2 = &x;
+	Part v = Part(55, "4", 4, "4");
+	Part* z = &v;
 
-	myTable.addItem(ptr);
 
+
+	myTable.addItem(y);
+	myTable.addItem(z);
+
+	Part* toRemove = myTable.removeItem(z);
+	bool tableMade = false;
+	char con = 'y';
+	char dec = 'z';
+	/*
+	while (con == 'y' || con == 'Y') {
+		while (!tableMade) {
+			cout << "-----------------------------" << endl;
+			cout << "| (1): Create a default size hash table" << endl;
+			cout << "| (2): Create a custom sized hash table" << endl;
+			cout << "-----------------------------" << endl;
+			cout << "| Pick one of the preceeding choices: ";
+			cin >> dec;
+			cout << endl;
+
+			if (dec == '1') {
+				hashTable<Part> myTable = hashTable<Part>();
+				tableMade = true;
+			}
+			else if (dec == '2') {
+				int tableSize = 0;
+
+				cout << "-----------------------------" << endl;
+				cout << "| Enter the desired size of the hash table: ";
+				cin >> tableSize;
+				cout << endl;
+				hashTable<Part> myTable = hashTable<Part>(tableSize);
+				tableMade = true;
+			}
+			else {
+				cout << "YOU ENTERED AN INCORRECT VALUE // PLEASE TRY AGAIN" << endl;
+				cout << endl;
+			}
+		}
+		cout << "-----------------------------" << endl;
+		cout << "| (1): Add an item" << endl;
+		cout << "| (2): Remove an item" << endl;
+		cout << "| (3): Get the length" << endl;
+		cout << "| (4): View the table" << endl;
+		cout << "-----------------------------" << endl;
+		cout << "| Pick one of the preceeding choices: ";
+		cin >> dec;
+		cout << endl;
+
+		if (dec == '1') {
+			int s = 0;
+			string d = "";
+			double p = 0;
+			string u = "";
+			int q = 0;
+			cout << "-----------------------------" << endl;
+			cout << "| Enter the item's sku: ";
+			cin >> s;
+			cout << endl;
+
+			cout << "| Enter the item's description: ";
+			cin.ignore();
+			getline(cin, d);
+			cout << endl;
+
+			cout << "| Enter the item's price: ";
+			cin >> p;
+			cout << endl;
+
+			cout << "| Enter the item's unit of measurement: ";
+			cin.ignore();
+			getline(cin, u);
+			cout << endl;
+
+			cout << "| Enter the item's quantity on hand: ";
+			cin >> q;
+			cout << endl;
+
+			Part* toAdd = new Part(s, d, p, u, q);
+			Part toDisplay = Part(s, d, p, u, q);
+			myTable.addItem(toAdd);
+
+
+			cout << "| You added the following item to the list: " << endl;
+			toDisplay.display();
+		}
+		else if (dec == '2') {
+
+		}
+		else if (dec == '3') {
+
+		}
+		else if (dec == '4') {
+
+		}
+		else {
+			cout << "YOU ENTERED AN INCORRECT VALUE // PLEASE TRY AGAIN" << endl;
+		}
+
+		cout << "-----------------------------" << endl;
+		cout << "| Would you like to continue (y/n): ";
+		cin >> con;
+		cout << endl;
+	}
+	*/
 	return 0;
 }

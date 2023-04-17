@@ -14,6 +14,7 @@ public:
 	void setMAX_SIZE(int);
 	T* removeItem(T*);
 	int getLength();
+	void printTable();
 private:
 	T** arr;
 	int hash(string);

@@ -33,7 +33,7 @@ void hashTable<T>::addItem(T* inVal) {	// address represents the index of where 
 	string sku_str = string(*inVal);
 	int address = hash(sku_str);
 
-	if (arr[address] == nullptr) {	// covers case where nothing is stored at the hash value
+	if (arr[address] == nullptr) {// covers case where nothing is stored at the hash value
 		arr[address] = inVal;
 		items++;
 	}
@@ -63,12 +63,13 @@ T* hashTable<T>::removeItem(T* inVal) {
 	int address = hash(sku_str);
 	int spotsChecked = 0;
 
+	
 	if (*arr[address] == *inVal) {	// item was placed with no collision and is found instantly
 		ret = arr[address];
 		arr[address] = nullptr;	// might cause ret to turn into nullptr, consider changing prev line to 'ret = inVal'
 		return ret;
 	}
-	else {
+	else {	// ADD LOGIC THAT COVERS COLLISIONS HERE
 		while (*arr[address] != *inVal && spotsChecked < MAX_SIZE) {// iterates until arr[address] == inVal or each spot is checked
 			if (address < MAX_SIZE) {
 				address++;
@@ -83,9 +84,6 @@ T* hashTable<T>::removeItem(T* inVal) {
 			ret = arr[address];
 			arr[address] = nullptr;
 			return ret;
-		}
-		else {
-			return nullptr;
 		}
 	}
 }
@@ -105,6 +103,13 @@ int hashTable<T>::hash(string inVal) {	// ret represents the hash value that wil
 	ret %= MAX_SIZE;
 	cout << "hash value: " << ret << endl;
 	return ret;
+}
+
+template <class T>
+void hashTable<T>::printTable() {
+	for (int i = 0; i < items; i++) {
+		cout << "item(" << i << "): " << arr[i] << endl;
+	}
 }
 
 template <class T>
