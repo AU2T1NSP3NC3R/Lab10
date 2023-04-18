@@ -28,7 +28,7 @@ int main() {
 		cin >> dec;
 		cout << endl;
 
-		if (dec == '1') {
+		if (dec == '1') {	// calls addItem function after prompting user to create a Part object
 			int s = 0;
 			string d = "";
 			double p = 0;
@@ -66,7 +66,7 @@ int main() {
 			}
 			myTable.addItem(toAdd);
 		}
-		else if (dec == '2') {
+		else if (dec == '2') {	// uses removeItem function
 			int SKU = 0;
 			string DESC = "";
 
@@ -93,18 +93,18 @@ int main() {
 			}
 			cout << "-----------------------------" << endl;
 		}
-		else if (dec == '3') {
+		else if (dec == '3') {	// calls getLength function
 			cout << "-----------------------------" << endl;
 			cout << "| Length: " << myTable.getLength() << endl;
 			cout << "-----------------------------" << endl;
 		}
-		else if (dec == '4') {
+		else if (dec == '4') {	// calls printTable function
 			cout << "-----------------------------" << endl;
 			cout << endl;
 			myTable.printTable();
 			cout << "-----------------------------" << endl;
 		}
-		else {
+		else {	// covers incorrect input value
 			cout << "YOU ENTERED AN INCORRECT VALUE // PLEASE TRY AGAIN" << endl;
 		}
 

@@ -1,6 +1,6 @@
 #include "Part.h"
 
-Part::Part() {
+Part::Part() {	// default constructor
 	sku = 0;
 	desc = "";
 	price = 0;
@@ -8,7 +8,7 @@ Part::Part() {
 	qoh = 0;
 }
 
-Part::Part(int sku_, string desc_, double price_, string uom_, int qoh_) {
+Part::Part(int sku_, string desc_, double price_, string uom_, int qoh_) {	// full args constructor
 	sku = sku_;
 	desc = desc_;
 	price = price_;
@@ -16,7 +16,7 @@ Part::Part(int sku_, string desc_, double price_, string uom_, int qoh_) {
 	qoh = qoh_;
 }
 
-Part::Part(int sku_, string desc_, double price_, string uom_) {
+Part::Part(int sku_, string desc_, double price_, string uom_) {	// constructor without quantity on hand
 	sku = sku_;
 	desc = desc_;
 	price = price_;
@@ -42,10 +42,10 @@ bool Part::inStock() {
 bool Part::available(tm desiredDay) {	// In order for script to compile we had to disable deprecation using '_CRT_SECURE_NO_WARNINGS'
 	time_t now = time(0);
 	tm* curr = localtime(&now);
-	if (qoh > 0) {
+	if (qoh > 0) {	// covers case where part can be shipped immediately
 		return true;
 	}
-	else if ((curr->tm_mday + lt) < desiredDay.tm_mday) {
+	else if ((curr->tm_mday + lt) < desiredDay.tm_mday) {	// checks the current day and compares it to lead time or desired day
 		if (curr->tm_mon == desiredDay.tm_mon) {
 			if (curr->tm_year == desiredDay.tm_year) {
 				return true;
@@ -57,7 +57,7 @@ bool Part::available(tm desiredDay) {	// In order for script to compile we had t
 	}
 }
 
-void Part::display() {
+void Part::display() {	// prints essential part info: description, sku, price, and quantity on hand
 	string s_price = to_string(price);
 	string s_sku = to_string(sku);
 	string s_qoh = to_string(qoh);

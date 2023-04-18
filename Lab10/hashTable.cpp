@@ -1,6 +1,6 @@
 #include "hashTable.h"
 template <class T>
-hashTable<T>::hashTable() {
+hashTable<T>::hashTable() {	// default constructor
 	items = 0;
 	arr = new T*[MAX_SIZE];
 	for (int i = 0; i < MAX_SIZE; i++) {
@@ -19,14 +19,14 @@ hashTable<T>::hashTable(int inVal) {	// calls setMAX_SIZE so we can always % the
 }
 
 template <class T>
-void hashTable<T>::setMAX_SIZE(int inVal) {
+void hashTable<T>::setMAX_SIZE(int inVal) {	// used to create a custom sized table
 	MAX_SIZE = inVal;
 }
 
 
 template <class T>
 void hashTable<T>::addItem(T* inVal) {	// address represents the index of where inVal will be placed within the array
-	if (items == MAX_SIZE) {
+	if (items == MAX_SIZE) {	// covers adding to a full table
 		try {
 			throw OverflowError();
 		}
@@ -60,7 +60,7 @@ void hashTable<T>::addItem(T* inVal) {	// address represents the index of where 
 
 template <class T>
 T* hashTable<T>::removeItem(T* inVal) {
-	if (items == 0) {
+	if (items == 0) {	// covers removing from an empty table
 		try {
 			throw UnderflowError();
 		}
@@ -123,7 +123,7 @@ int hashTable<T>::hash(string inVal) {	// ret represents the hash value that wil
 }
 
 template <class T>
-void hashTable<T>::printTable() {
+void hashTable<T>::printTable() {	// goes through and calls display member function for each item in list
 	for (int i = 0; i < MAX_SIZE; i++) {
 		if (arr[i] != nullptr) {
 			T toPrint = *arr[i];
