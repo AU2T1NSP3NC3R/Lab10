@@ -27,7 +27,13 @@ void hashTable<T>::setMAX_SIZE(int inVal) {
 template <class T>
 void hashTable<T>::addItem(T* inVal) {	// address represents the index of where inVal will be placed within the array
 	if (items == MAX_SIZE) {
-		// throw overflow error
+		try {
+			throw OverflowError();
+		}
+		catch (OverflowError ex) {
+			ex.what();
+		}
+		return;
 	}
 	
 	string sku_str = string(*inVal);
@@ -55,7 +61,13 @@ void hashTable<T>::addItem(T* inVal) {	// address represents the index of where 
 template <class T>
 T* hashTable<T>::removeItem(T* inVal) {
 	if (items == 0) {
-		// throw underflow exception
+		try {
+			throw UnderflowError();
+		}
+		catch (UnderflowError ex) {
+			ex.what();
+		}
+		return nullptr;
 	}
 
 	T* ret = nullptr;
@@ -64,7 +76,7 @@ T* hashTable<T>::removeItem(T* inVal) {
 	int spotsChecked = 0;
 
 	
-	if (*arr[address] == *inVal) {	// item was placed with no collision and is found instantly
+	if (arr[address] != nullptr && *arr[address] == *inVal) {	// item was placed with no collision and is found instantly
 		ret = arr[address];
 		arr[address] = nullptr;	// might cause ret to turn into nullptr, consider changing prev line to 'ret = inVal'
 		items--;
@@ -85,11 +97,12 @@ T* hashTable<T>::removeItem(T* inVal) {
 					return ret;
 				}
 				else {
+					address++;
 					spotsChecked++;
 				}
 			}
 		}
-		return nullptr;
+		return ret;
 	}
 }
 
@@ -106,7 +119,6 @@ int hashTable<T>::hash(string inVal) {	// ret represents the hash value that wil
 		ret += int(x);
 	}
 	ret %= MAX_SIZE;
-	cout << "hash value: " << ret << endl;
 	return ret;
 }
 

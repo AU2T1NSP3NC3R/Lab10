@@ -4,11 +4,20 @@
 
 using namespace std;
 
-class EmptyListError : public std::exception
+class OverflowError : public std::exception
 {
 public:
 	char const* what() {
-		cout << "Empty List Error" << endl;
-		return "\n Empty List Error";
+		cout << "Overflow Error" << endl;
+		return "\n Overflow Error";
+	}
+};
+
+class UnderflowError : public std::exception
+{
+public:
+	char const* what() {
+		cout << "Underflow Error" << endl;
+		return "\n Underflow Error";
 	}
 };
