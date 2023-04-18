@@ -107,6 +107,11 @@ T* hashTable<T>::removeItem(T* inVal) {
 }
 
 template <class T>
+T** hashTable<T>::getItem(T* inval) {
+
+}
+
+template <class T>
 int hashTable<T>::getLength() {
 	return items;
 }
