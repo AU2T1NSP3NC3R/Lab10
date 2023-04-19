@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Exception.h" />
     <ClInclude Include="hashTable.h" />
     <ClInclude Include="Part.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Exception.cpp" />
     <ClCompile Include="hashTable.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="Source.cpp" />
