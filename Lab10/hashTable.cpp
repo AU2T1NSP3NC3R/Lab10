@@ -140,5 +140,5 @@ void hashTable<T>::printTable() {	// goes through and calls display member funct
 
 template <class T>
 hashTable<T>::~hashTable() {
-	
+	delete[] arr;
 }
