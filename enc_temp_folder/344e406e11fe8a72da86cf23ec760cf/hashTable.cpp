@@ -109,5 +109,5 @@ int hashTable<T>::hash(string inVal) {	// ret represents the hash value that wil
 
 template <class T>
 hashTable<T>::~hashTable() {
-	
+
 }
