@@ -1,16 +1,15 @@
 #pragma once
 #include <string>
-#include <iostream>
-#include "Exception.h"
-using namespace std;
-
 template <class T>
-class hashTable
-{
+class chainHashTable{
 public:
-	hashTable();
-	hashTable(int);
-	~hashTable();
+	struct node {
+		T* data;
+		node* next;
+	};
+	chainHashTable();
+	chainHashTable(int);
+	~chainHashTable();
 	void addItem(T*);
 	void setMAX_SIZE(int);
 	T* removeItem(T*);
