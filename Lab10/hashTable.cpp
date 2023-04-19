@@ -107,7 +107,7 @@ T* hashTable<T>::removeItem(T* inVal) {
 }
 
 template <class T>
-T* hashTable<T>::getItem(T* inval) {
+T* hashTable<T>::getItem(T* inVal) {
 	if (items == 0) {
 		try {
 			throw UnderflowError();
