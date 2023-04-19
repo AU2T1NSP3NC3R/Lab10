@@ -14,7 +14,7 @@ public:
 	void addItem(T*);
 	void setMAX_SIZE(int);
 	T* removeItem(T*);
-	T** getItem(T*);
+	T* getItem(T*);
 	int getLength();
 	void printTable();
 private:

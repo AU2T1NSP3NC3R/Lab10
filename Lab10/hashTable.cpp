@@ -107,8 +107,46 @@ T* hashTable<T>::removeItem(T* inVal) {
 }
 
 template <class T>
-T** hashTable<T>::getItem(T* inval) {
+T* hashTable<T>::getItem(T* inval) {
+	if (items == 0) {
+		try {
+			throw UnderflowError();
+		}
+		catch (UnderflowError ex) {
+			ex.what();
+		}
+		return nullptr;
+	}
+	T* ret = nullptr;
+	string sku_str = string(*inVal);
+	int address = hash(sku_str);
+	int spotsChecked = 0;
 
+
+	if (arr[address] != nullptr && *arr[address] == *inVal) {	// item was placed with no collision and is found instantly
+		ret = arr[address];
+		return ret;
+	}
+	else {	// Logic that covers removing items that were placed with collision
+		address = 0;
+		while (spotsChecked < MAX_SIZE) {	// while loop will terminate if inVal is found, or it checks every spot and does not find inVal
+			if (arr[address] == nullptr) {
+				address++;
+				spotsChecked++;
+			}
+			else {	// checks all entries in table that are not nullptr
+				if (*arr[address] == *inVal) {
+					ret = arr[address];
+					return ret;
+				}
+				else {
+					address++;
+					spotsChecked++;
+				}
+			}
+		}
+		return ret;
+	}
 }
 
 template <class T>
