@@ -50,20 +50,141 @@ void chainHashTable<T>::addItem(T* inVal) {	// address represents the index of w
 	int address = hash(sku_str);
 
 	if (arr[address] == nullptr) {// covers case where nothing is stored at the hash value
-		arr[address] = inVal;
+		node* newNode = new node;
+		newNode->data = inVal;
+		newNode->next = nullptr;
+		arr[address] = newNode;
 		items++;
 	}
 	else {	// covers collisions
-		while (arr[address] != nullptr) {	// iterates address to next open spot within the array
-			if (address < MAX_SIZE) {
-				address++;
-			}
-			else if (address == MAX_SIZE) {	// resets address to front of array when it iterates to end
-				address = 0;
-			}
+		node* temp = arr[address];
+		while (temp->next != nullptr) {	// iterates address to next open spot within the array
+			temp = temp->next;
 		}
-		arr[address] = inVal;
+		node* newNode = new node;
+		newNode->data = inVal;
+		newNode->next = nullptr;
+		temp->next = newNode;
 		items++;
 	}
 	return;
+}
+
+template <class T>
+T* chainHashTable<T>::removeItem(T* inVal) {
+	if (items == 0) {	// covers removing from an empty table
+		try {
+			throw UnderflowError();
+		}
+		catch (UnderflowError ex) {
+			ex.what();
+		}
+		return nullptr;
+	}
+
+	T* ret = nullptr;
+	string sku_str = string(*inVal);
+	int address = hash(sku_str);
+	int spotsChecked = 0;
+
+
+	if (arr[address] != nullptr && *arr[address]->data == *inVal) {	// item was placed with no collision and is found instantly
+		ret = arr[address]->data;
+		if (arr[address]->next == nullptr) {
+			delete arr[address];
+			arr[address] = nullptr;	// might cause ret to turn into nullptr, consider changing prev line to 'ret = inVal'
+		}
+		else {
+			node* temp = arr[address];
+			arr[address] = arr[address]->next;
+			delete temp;
+		}
+		items--;
+		return ret;
+	}
+	else if(arr[address] != nullptr && *arr[address]->data != *inVal) {	// Logic that covers removing items that were placed with collision
+		node* temp = arr[address];
+		while (*temp->next->data != *inVal) {
+			if (temp->next->next == nullptr) {
+				//not in hash table
+				return nullptr;
+			}
+			temp = temp->next;
+		}
+		ret = temp->next->data;
+		node* rem = temp->next;
+		temp->next = temp->next->next;
+		delete rem;
+		items--;
+		return ret;
+	}
+	else {
+		//not in hashTable
+		return nullptr;
+	}
+}
+
+template <class T>
+T* chainHashTable<T>::getItem(T* inVal) {
+	if (items == 0) {	// covers removing from an empty table
+		try {
+			throw UnderflowError();
+		}
+		catch (UnderflowError ex) {
+			ex.what();
+		}
+		return nullptr;
+	}
+
+	T* ret = nullptr;
+	string sku_str = string(*inVal);
+	int address = hash(sku_str);
+	int spotsChecked = 0;
+
+
+	if (arr[address] != nullptr && *arr[address]->data == *inVal) {	// item was placed with no collision and is found instantly
+		ret = arr[address]->data;
+		return ret;
+	}
+	else if (arr[address] != nullptr && *arr[address]->data != *inVal) {	// Logic that covers removing items that were placed with collision
+		node* temp = arr[address];
+		while (*temp->next->data != *inVal) {
+			if (temp->next->next == nullptr) {
+				//not in hash table
+				return nullptr;
+			}
+			temp = temp->next;
+		}
+		ret = temp->next->data;
+		return ret;
+	}
+	else {
+		//not in hashTable
+		return nullptr;
+	}
+}
+
+template <class T>
+int chainHashTable<T>::getLength() {
+	return items;
+}
+
+template <class T>
+void chainHashTable<T>::printTable() {	// goes through and calls display member function for each item in list
+	for (int i = 0; i < MAX_SIZE; i++) {
+		if (arr[i] != nullptr) {
+			node* temp = arr[i];
+			while (temp != nullptr) {
+				T toPrint = *arr[i]->data;
+				toPrint.display();
+				cout << endl;
+				temp = temp->next;
+			}
+		}
+	}
+}
+
+template <class T>
+chainHashTable<T>::~hashTable() {
+	delete[] arr;
 }
