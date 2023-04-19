@@ -185,6 +185,6 @@ void chainHashTable<T>::printTable() {	// goes through and calls display member 
 }
 
 template <class T>
-chainHashTable<T>::~hashTable() {
+chainHashTable<T>::~chainHashTable() {
 	delete[] arr;
 }
