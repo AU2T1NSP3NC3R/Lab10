@@ -20,7 +20,7 @@ public:
 	int getLength();
 	void printTable();
 private:
-	T** arr;
+	node** arr;
 	int hash(string);
 	int items;
 	int MAX_SIZE = 100;

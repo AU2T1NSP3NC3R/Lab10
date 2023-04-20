@@ -2,6 +2,7 @@
 template <class T>
 hashTable<T>::hashTable() {	// default constructor
 	items = 0;
+	comps = 0;
 	arr = new T*[MAX_SIZE];
 	for (int i = 0; i < MAX_SIZE; i++) {
 		arr[i] = nullptr;
@@ -11,6 +12,7 @@ hashTable<T>::hashTable() {	// default constructor
 template <class T>
 hashTable<T>::hashTable(int inVal) {	// calls setMAX_SIZE so we can always % the hash value by the same variable
 	items = 0;
+	comps = 0;
 	setMAX_SIZE(inVal);
 	arr = new T*[MAX_SIZE];
 	for (int i = 0; i < MAX_SIZE; i++) {
@@ -125,6 +127,7 @@ T* hashTable<T>::getItem(T* inVal) {
 
 	if (arr[address] != nullptr && *arr[address] == *inVal) {	// item was placed with no collision and is found instantly
 		ret = arr[address];
+		comps++;
 		return ret;
 	}
 	else {	// Logic that covers removing items that were placed with collision
@@ -132,16 +135,19 @@ T* hashTable<T>::getItem(T* inVal) {
 		while (spotsChecked < MAX_SIZE) {	// while loop will terminate if inVal is found, or it checks every spot and does not find inVal
 			if (arr[address] == nullptr) {
 				address++;
+				comps++;
 				spotsChecked++;
 			}
 			else {	// checks all entries in table that are not nullptr
 				if (*arr[address] == *inVal) {
 					ret = arr[address];
+					comps++;
 					return ret;
 				}
 				else {
 					address++;
 					spotsChecked++;
+					comps++;
 				}
 			}
 		}

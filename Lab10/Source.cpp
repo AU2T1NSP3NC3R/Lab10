@@ -1,11 +1,53 @@
 #include <iostream>
+#include <cstdlib>
 #include "hashTable.h"
+#include "chainHashTable.h"
+#include "chainHashTable.cpp"
 #include "hashTable.cpp"
 #include "Part.h"
+#include "Student.h"
 
 
 int main() {
+	Student* students[50];
 
+	string names[2] = { "Ichibod", "Ethel" };
+
+	for (int i = 0; i < 50; i++) {	// populates student array
+		int rand_name = rand() * 2;
+		int rand_ID = rand() * 500;
+		students[i]->name = names[rand_name];
+		students[i]->ID = rand_ID;
+	}
+
+	hashTable<Student> linear_def = hashTable<Student>();
+	chainHashTable<Student> chain_def = chainHashTable<Student>();
+
+	hashTable<Student> linear_sec = hashTable<Student>(150);
+	chainHashTable<Student> chain_sec = chainHashTable<Student>(150);
+
+	hashTable<Student> linear_thr = hashTable<Student>(200);
+	chainHashTable<Student> chain_thr = chainHashTable<Student>(200);
+
+	hashTable<Student> linear_for = hashTable<Student>(250);
+	chainHashTable<Student> chain_for = chainHashTable<Student>(250);
+
+	for (int i = 0; i < 50; i++) {	// adding to all versions of hash tables
+		linear_def.addItem(students[i]);
+		chain_def.addItem(students[i]);
+		linear_sec.addItem(students[i]);
+		chain_sec.addItem(students[i]);
+		linear_thr.addItem(students[i]);
+		chain_thr.addItem(students[i]);
+		linear_for.addItem(students[i]);
+		chain_for.addItem(students[i]);
+	}
+
+
+
+	// MAIN from Task 3 Below
+
+	/*
 	char con = 'y';
 	char dec = 'z';
 	int tableSize = 0;
@@ -113,6 +155,6 @@ int main() {
 		cin >> con;
 		cout << endl;
 	}
-	
+	*/
 	return 0;
 }

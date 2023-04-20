@@ -19,21 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Homework4\HW4\BST.h" />
+    <ClInclude Include="chainHashTable.h" />
     <ClInclude Include="Exception.h" />
     <ClInclude Include="hashTable.h" />
-    <ClInclude Include="hashTableChain.h" />
-    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Part.h" />
+    <ClInclude Include="Student.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Homework4\HW4\BST.cpp" />
-    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="chainHashTable.cpp" />
     <ClCompile Include="hashTable.cpp" />
-    <ClCompile Include="hashTableChain.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Part.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Student.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

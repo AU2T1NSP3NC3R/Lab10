@@ -17,6 +17,8 @@ public:
 	T* getItem(T*);
 	int getLength();
 	void printTable();
+
+	int comps;
 private:
 	T** arr;
 	int hash(string);

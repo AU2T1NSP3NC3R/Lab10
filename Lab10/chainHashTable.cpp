@@ -2,7 +2,7 @@
 template <class T>
 chainHashTable<T>::chainHashTable() {	// default constructor
 	items = 0;
-	arr = new T * [MAX_SIZE];
+	arr = new node * [MAX_SIZE];
 	for (int i = 0; i < MAX_SIZE; i++) {
 		arr[i] = nullptr;
 	}
@@ -12,7 +12,7 @@ template <class T>
 chainHashTable<T>::chainHashTable(int inVal) {	// calls setMAX_SIZE so we can always % the hash value by the same variable
 	items = 0;
 	setMAX_SIZE(inVal);
-	arr = new T * [MAX_SIZE];
+	arr = new node * [MAX_SIZE];
 	for (int i = 0; i < MAX_SIZE; i++) {
 		arr[i] = nullptr;
 	}
