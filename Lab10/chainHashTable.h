@@ -19,6 +19,7 @@ public:
 	T* getItem(T*);
 	int getLength();
 	void printTable();
+	int comps;
 private:
 	node** arr;
 	int hash(string);

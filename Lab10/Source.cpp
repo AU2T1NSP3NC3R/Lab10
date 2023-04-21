@@ -9,17 +9,22 @@
 
 
 int main() {
-	Student* students[50];
+	// MAIN from task 5
+
+	Student* students[50] = {};
 
 	string names[2] = { "Ichibod", "Ethel" };
 
+	
 	for (int i = 0; i < 50; i++) {	// populates student array
-		int rand_name = rand() * 2;
-		int rand_ID = rand() * 500;
-		students[i]->name = names[rand_name];
-		students[i]->ID = rand_ID;
+		int rand_name = rand() % 2;
+		int rand_ID = rand() % 500 + 1;
+		Student* temp = new Student(names[rand_name], rand_ID);
+		students[i] = temp;
 	}
 
+	// initializes all hash tables
+	
 	hashTable<Student> linear_def = hashTable<Student>();
 	chainHashTable<Student> chain_def = chainHashTable<Student>();
 
@@ -32,34 +37,65 @@ int main() {
 	hashTable<Student> linear_for = hashTable<Student>(250);
 	chainHashTable<Student> chain_for = chainHashTable<Student>(250);
 
-	for (int i = 0; i < 50; i++) {	// adding to all versions of hash tables
+	for (int i = 0; i < 50; i++) {	// adding to all versions of hash tables, and getting from all versions
 		linear_def.addItem(students[i]);
+		linear_def.getItem(students[i]);
+
 		chain_def.addItem(students[i]);
+		chain_def.getItem(students[i]);
+
 		linear_sec.addItem(students[i]);
+		linear_sec.getItem(students[i]);
+
 		chain_sec.addItem(students[i]);
+		chain_sec.getItem(students[i]);
+
 		linear_thr.addItem(students[i]);
+		linear_thr.getItem(students[i]);
+
 		chain_thr.addItem(students[i]);
+		chain_thr.getItem(students[i]);
+
 		linear_for.addItem(students[i]);
+		linear_for.getItem(students[i]);
+
 		chain_for.addItem(students[i]);
+		chain_for.getItem(students[i]);
 	}
 
+	//prints results
+
+	cout << "linear probing (size 100): " << linear_def.comps << endl;
+	cout << "linear probing (size 150): " << linear_sec.comps << endl;
+	cout << "linear probing (size 200): " << linear_thr.comps << endl;
+	cout << "linear probing (size 250): " << linear_for.comps << endl;
+	cout << endl;
+	cout << "chaining (size 100): " << chain_def.comps << endl;
+	cout << "chaining (size 150): " << chain_sec.comps << endl;
+	cout << "chaining (size 200): " << chain_thr.comps << endl;
+	cout << "chaining (size 250): " << chain_for.comps << endl;
+	
 
 
-	// MAIN from Task 3 Below
+
+	
+	// MAIN from Task 3 and 4 Below: change myTable from chainHashTable to hashTable and it works for both
 
 	/*
 	char con = 'y';
 	char dec = 'z';
 	int tableSize = 0;
 
+
+	// define size of table to start
 	cout << "-----------------------------" << endl;
 	cout << "| Enter the desired size of the hash table: ";
 	cin >> tableSize;
 	cout << endl;
-	hashTable<Part> myTable = hashTable<Part>(tableSize);
+	chainHashTable<Part> myTable = chainHashTable<Part>(tableSize);
 	
 	while (con == 'y' || con == 'Y') {
-
+		// decision table
 		cout << "-----------------------------" << endl;
 		cout << "| (1): Add an item" << endl;
 		cout << "| (2): Remove an item" << endl;
@@ -150,6 +186,7 @@ int main() {
 			cout << "YOU ENTERED AN INCORRECT VALUE // PLEASE TRY AGAIN" << endl;
 		}
 
+		// prompt to continue
 		cout << "-----------------------------" << endl;
 		cout << "| Would you like to continue (y/n): ";
 		cin >> con;

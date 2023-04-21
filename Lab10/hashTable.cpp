@@ -98,7 +98,7 @@ T* hashTable<T>::removeItem(T* inVal) {
 					items--;
 					return ret;
 				}
-				else {
+				else {	// iterates to next spot
 					address++;
 					spotsChecked++;
 				}
@@ -110,7 +110,7 @@ T* hashTable<T>::removeItem(T* inVal) {
 
 template <class T>
 T* hashTable<T>::getItem(T* inVal) {
-	if (items == 0) {
+	if (items == 0) {	// searching an empty table
 		try {
 			throw UnderflowError();
 		}
@@ -121,8 +121,7 @@ T* hashTable<T>::getItem(T* inVal) {
 	}
 	T* ret = nullptr;
 	string sku_str = string(*inVal);
-	int address = hash(sku_str);
-	int spotsChecked = 0;
+	int address = hash(sku_str);	// finds where item would be placed if no collisions
 
 
 	if (arr[address] != nullptr && *arr[address] == *inVal) {	// item was placed with no collision and is found instantly
@@ -131,32 +130,24 @@ T* hashTable<T>::getItem(T* inVal) {
 		return ret;
 	}
 	else {	// Logic that covers removing items that were placed with collision
-		address = 0;
-		while (spotsChecked < MAX_SIZE) {	// while loop will terminate if inVal is found, or it checks every spot and does not find inVal
-			if (arr[address] == nullptr) {
-				address++;
+		while (address < MAX_SIZE) {
+			if (arr[address] == nullptr) {	// because collisions are placed next to each other, if it reaches a spot with a nullptr it is not in the table
 				comps++;
-				spotsChecked++;
+				return nullptr;
 			}
-			else {	// checks all entries in table that are not nullptr
-				if (*arr[address] == *inVal) {
-					ret = arr[address];
-					comps++;
-					return ret;
-				}
-				else {
-					address++;
-					spotsChecked++;
-					comps++;
-				}
+			else if (*arr[address] == *inVal) {	// covers finding inVal
+				comps++;
+				ret = arr[address];
+				return ret;
 			}
+			address++;	// iterates to next position in table
+			comps++;
 		}
-		return ret;
 	}
 }
 
 template <class T>
-int hashTable<T>::getLength() {
+int hashTable<T>::getLength() {	// returns items
 	return items;
 }
 

@@ -2,6 +2,7 @@
 template <class T>
 chainHashTable<T>::chainHashTable() {	// default constructor
 	items = 0;
+	comps = 0;
 	arr = new node * [MAX_SIZE];
 	for (int i = 0; i < MAX_SIZE; i++) {
 		arr[i] = nullptr;
@@ -126,7 +127,7 @@ T* chainHashTable<T>::removeItem(T* inVal) {
 
 template <class T>
 T* chainHashTable<T>::getItem(T* inVal) {
-	if (items == 0) {	// covers removing from an empty table
+	if (items == 0) {	// covers getting from an empty table
 		try {
 			throw UnderflowError();
 		}
@@ -144,18 +145,22 @@ T* chainHashTable<T>::getItem(T* inVal) {
 
 	if (arr[address] != nullptr && *arr[address]->data == *inVal) {	// item was placed with no collision and is found instantly
 		ret = arr[address]->data;
+		comps++;
 		return ret;
 	}
-	else if (arr[address] != nullptr && *arr[address]->data != *inVal) {	// Logic that covers removing items that were placed with collision
+	else if (arr[address] != nullptr && *arr[address]->data != *inVal) {// Logic that covers getting items that were placed with collision
+		comps++;
 		node* temp = arr[address];
-		while (*temp->next->data != *inVal) {
+		while (*temp->next->data != *inVal) {	// will iterate until temp is at spot before inval
+			comps++;
 			if (temp->next->next == nullptr) {
 				//not in hash table
 				return nullptr;
 			}
 			temp = temp->next;
 		}
-		ret = temp->next->data;
+		comps++;
+		ret = temp->next->data;	// moves temp to equal inval and stores value in ret
 		return ret;
 	}
 	else {
